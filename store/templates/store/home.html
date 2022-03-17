@@ -1,0 +1,40 @@
+{% extends "store/base.html" %}
+{% block title %}<title>Home</title>{% endblock title%}
+{% block content %}
+    <section class="home-intro">
+
+    </section>
+    <div class="header-text">
+        <h1> <span class="orange">Search, </span>Read, <span class="orange"> Buy, <br> </span> Review </h1>
+        <a href="">Register Now &#8594; </a>
+    </div>
+
+    <section class="products">
+        <h2>All Books</h2>
+        <div class="hr">
+            <hr class="centre">
+        </div>
+        {% if products %}
+            <div class="row">
+                {% for p in products %}
+                <div class="col-md-2">
+                        <img src="{{p.image.url}}" alt="">
+                        <h6 class="mt-3">
+                            <a href="{{ p.get_absolute_url }}">{{p.title}}</a>
+                        </h6>
+
+                        <p><a href="">5 min read &#8594;</a></p>
+                            
+                </div>
+                {% endfor %}
+            </div>     
+        {%else %}
+            <div class="container mb-3">
+                <div class="alert alert-info">
+                    <h4>No Books to display</h4>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+{% endblock content%}

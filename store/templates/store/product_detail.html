@@ -1,0 +1,67 @@
+{% extends "store/base.html" %}
+{% block title %}<title>Home</title>{% endblock title%}
+
+{% block content %}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'store:products' %}">Home</a></li>
+          <li class="breadcrumb-item">{{product.title}}</li>
+    
+        </ol>
+    </nav>
+    <div class="row mb-3">
+        <div class="col-md-5 mb-3">
+            <img src="{{product.image.url}}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-5 mb-3">
+            <h4 class="text-center">{{product.title}}</h4>
+            
+            <p class="flex-container"> <span class="circular">{{ product.author|make_list|first|capfirst }}</span> <small class="mt-1">{{product.author|capfirst}} (Author)</small>  </p>
+
+
+            <button class="category"><small>{{product.category.name}}</small></button>
+
+            <button class="category">
+                {% if product.in_stock %}
+                <small>In Stock</small>
+                {% else %}
+                <small>Out Of Stock</small>
+                {% endif %}
+            </button>
+
+            <p>{{product.description|slice:"355"}}</p>
+
+            <div class="border p-3 ">
+                <div class="row">
+                    <div class="col-3">
+                        <strong>Price:</strong>
+                    </div>
+                    <div class="col-6">
+                        $ {{product.price}}
+                    </div>
+                </div>    
+
+            </div>
+            <div class="border p-3">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="select"><strong>Qty: </strong></label>
+                        <select id="select">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                        </select>
+
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary btn-sm">Add to basket</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
